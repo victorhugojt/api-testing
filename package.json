@@ -1,0 +1,28 @@
+{
+  "name": "api-testing",
+  "version": "1.0.0",
+  "description": "\u0016This is a Workshop about Api Testing in JavaScript",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/victorhugojt/api-testing.git"
+  },
+  "keywords": [
+    "api-testing",
+    "dojo",
+    "practice"
+  ],
+  "author": "Victor Hugo Jimenez T Vjimenez@psl.com.co victorhugojt",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/victorhugojt/api-testing/issues"
+  },
+  "homepage": "https://github.com/victorhugojt/api-testing#readme",
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "mocha": "^5.0.1"
+  }
+}
