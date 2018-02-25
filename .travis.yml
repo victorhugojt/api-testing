@@ -5,7 +5,6 @@ directories:
 notifications:
 email: false
 node_js:
-  - '7'
   - '6'
 branches:
 except:
