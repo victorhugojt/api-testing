@@ -11,8 +11,7 @@ describe('Github Api Test', () => {
     it('Via OAuth2 Tokens by Header', () =>
       agent.get(`${urlBase}/repos/${githubUserName}/${repository}`)
         .auth('token', process.env.ACCESS_TOKEN)
-        .then((response) => {
-         console.log('Token :: '+process.env.ACCESS_TOKEN);
+        .then((response) => {          
           expect(response.status).to.equal(statusCode.OK);
           expect(response.body.description).equal('This is a Workshop about Api Testing in JavaScript');
         }));
