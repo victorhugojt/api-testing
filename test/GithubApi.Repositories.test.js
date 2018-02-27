@@ -11,7 +11,7 @@ describe('Getting repository info', () => {
   let repositories;
   let pathRepo;
   let repoFilesPath;
-  let repository = 'api-testing';
+  const repository = 'api-testing';
   const expectedSha = 'f87e202c2c92f07204d60b6cd3a9a6fcef588f1b';
 
   it('Consume GET GitHUB User Service', () => agent.get('https://api.github.com/users/victorhugojt')
@@ -31,7 +31,7 @@ describe('Getting repository info', () => {
       expect(response.status).to.equal(statusCode.OK);
       repositories = response.body;
       repoFound = repositories.find(element => element.name === repository);
-      var fullName = 'victorhugojt/'.concat(repository);
+      const fullName = 'victorhugojt/'.concat(repository);
       expect(repoFound.full_name).to.equal(fullName);
       expect(repoFound.private).to.equal(false);
       pathRepo = repoFound.svn_url.concat('/archive/').concat(repoFound.default_branch).concat('.zip');
@@ -51,10 +51,8 @@ describe('Getting repository info', () => {
   it('Consume GET GitHUB Files Repository Service LIST FILES', () => agent.get(repoFilesPath)
     .then((response) => {
       expect(response.status).to.equal(statusCode.OK);
-      const files = response.body;      
+      const files = response.body;
       const fileFound = files.find(element => element.name === 'README.md');
       expect(fileFound.sha).to.equal(expectedSha);
     }));
-  
-    
 });
