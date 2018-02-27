@@ -11,6 +11,7 @@ describe('Getting repository info', () => {
   let repositories;
   let pathRepo;
   let repoFilesPath;
+  const repository = 'api-testing';
 
   it('Consume GET GitHUB User Service', () => agent.get('https://api.github.com/users/victorhugojt')
     .auth('token', process.env.ACCESS_TOKEN)
@@ -27,9 +28,11 @@ describe('Getting repository info', () => {
     .auth('token', process.env.ACCESS_TOKEN)
     .then((response) => {
       expect(response.status).to.equal(statusCode.OK);
-      repositories = response.body;      
-      repoFound = repositories.find(function (element){ return element.name === 'example'});
-      expect(repoFound.full_name).to.equal('victorhugojt/example');
+      repositories = response.body;
+      repoFound = repositories.find(element => element.name === repository);
+      console.log(repoFound);
+      const fullName = 'victorhugojt/'.concat(repository);
+      expect(repoFound.full_name).to.equal(fullName);
       expect(repoFound.private).to.equal(false);
       pathRepo = repoFound.svn_url.concat('/archive/').concat(repoFound.default_branch).concat('.zip');
       repoFilesPath = repoFound.url.concat('/contents');
@@ -46,7 +49,7 @@ describe('Getting repository info', () => {
       expect('Content-Type', /application\/zip/);
     }));
 
-  it('Consume GET GitHUB Files Repository Service', () => agent.get(repoFilesPath)
+  it('Consume GET GitHUB Files Repository Service', () => agent.get(repoFilesPath.concat('README.md'))
     .then((response) => {
       expect(response.status).to.equal(statusCode.OK);
       const files = response.body;
