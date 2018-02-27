@@ -27,10 +27,8 @@ describe('Getting repository info', () => {
     .auth('token', process.env.ACCESS_TOKEN)
     .then((response) => {
       expect(response.status).to.equal(statusCode.OK);
-      repositories = response.body;
-
-      repoFound = repositories.find(element => element.name === 'example');
-
+      repositories = response.body;      
+      repoFound = repositories.find(function (element){ return element.name === 'example'});
       expect(repoFound.full_name).to.equal('victorhugojt/example');
       expect(repoFound.private).to.equal(false);
       pathRepo = repoFound.svn_url.concat('/archive/').concat(repoFound.default_branch).concat('.zip');
