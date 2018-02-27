@@ -30,6 +30,7 @@
     "http-status-codes": "^1.3.0",
     "mocha": "^5.0.1",
     "mochawesome": "^3.0.2",
+    "superagent-binary-parser": "^1.0.1",
     "travis-cli": "^1.0.9"
   },
   "dependencies": {

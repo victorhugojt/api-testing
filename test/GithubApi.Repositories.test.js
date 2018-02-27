@@ -7,6 +7,7 @@ describe('Getting repository info', () => {
   let repositoriesURL;
   let repoFound;
   let repositories;
+  let pathRepo;
 
   it('Consume GET GitHUB User Service', () => agent.get('https://api.github.com/users/victorhugojt')
     .auth('token', process.env.ACCESS_TOKEN)
@@ -26,6 +27,8 @@ describe('Getting repository info', () => {
       repositories = response.body;
       repoFound = repositories.find(element => element.name === 'example');
       expect(repoFound.full_name).to.equal('victorhugojt/example');
-      expect(repoFound.private).to.equal(false);
+      expect(repoFound.private).to.equal(false);      
+      pathRepo = repoFound.svn_url.concat('/archive/').concat(repoFound.default_branch).concat('.zip');                  
     }));
+
 });
